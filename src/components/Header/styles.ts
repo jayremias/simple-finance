@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.header`
   background: var(--blue);
 `;
 
 export const Content = styled.div`
-  max-width: 1080px;
+  max-width: 1120px;
   margin: 0 auto;
 
   padding: 2rem 1rem 12rem;
@@ -14,18 +14,19 @@ export const Content = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  .logo { 
+  .logo {
     display: flex;
     align-items: center;
     color: var(--negative-text);
+    font-size: 2rem;
 
     svg {
       margin-right: 0.2rem;
-      color: var(--success-green);
+      color: var(--green);
     }
   }
 
-  button { 
+  button {
     font-size: 1rem;
     color: #fff;
     background: var(--blue-light);

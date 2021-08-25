@@ -1,15 +1,16 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
     --background: #f0f2f5;
     --red: #e52e4d;
     --blue: #5429cc;
+    --green: #4BB543;
+    --white: #ffffff;
 
     --blue-light: #6933ff;
 
     --negative-text: #ffffff;
-    --success-green: #4BB543;
 
     --text-title: #363f5f;
     --text-body: #969cb3;
@@ -54,5 +55,9 @@ export const GlobalStyle = createGlobalStyle`
   [disabled] { 
     opacity: 0.6;
     cursor: not-allowed;
+  }
+
+  .success {
+    color: var(--green);
   }
 `;
