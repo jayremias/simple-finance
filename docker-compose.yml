@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  app:
+    build: .
+    container_name: simple_finance
+    ports:
+      - 3001:3000
+    volumes:
+      - .:/usr/app
