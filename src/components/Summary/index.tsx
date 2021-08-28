@@ -1,10 +1,34 @@
 import { Container } from "./styles";
 import { GiReceiveMoney, GiPayMoney, GiTakeMyMoney } from "react-icons/gi";
-// import { TransactionContext } from "../../TransactionContext";
-// import { useContext } from "react";
+import { useTransactions } from "../../hooks/useTransactions";
 
 export function Summary() {
-  // const {transactions} = useContext(TransactionContext);
+  const { transactions } = useTransactions();
+
+  const summary = transactions.reduce(
+    (acc, transaction) => {
+      if (transaction.type === "deposit") {
+        acc.deposits += transaction.amount;
+        acc.total += transaction.amount;
+      } else {
+        acc.withdraws -= transaction.amount;
+        acc.total -= transaction.amount;
+      }
+      return acc;
+    },
+    {
+      deposits: 0,
+      withdraws: 0,
+      total: 0,
+    }
+  );
+
+  function formatCurrency(amount: number) {
+    return Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(amount);
+  }
 
   return (
     <Container>
@@ -13,21 +37,21 @@ export function Summary() {
           <p>Entradas</p>
           <GiReceiveMoney color="var(--green)" />
         </header>
-        <strong>R$1.000,00</strong>
+        <strong>{formatCurrency(summary.deposits)}</strong>
       </div>
       <div>
         <header>
           <p>Saídas</p>
           <GiPayMoney color="var(--red)" />
         </header>
-        <strong>- R$500,00</strong>
+        <strong>{formatCurrency(summary.withdraws)}</strong>
       </div>
       <div>
         <header>
           <p>Total</p>
           <GiTakeMyMoney color="var(--white)" />
         </header>
-        <strong>R$500,00</strong>
+        <strong>{formatCurrency(summary.total)}</strong>
       </div>
     </Container>
   );

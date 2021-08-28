@@ -15,6 +15,10 @@ export const Container = styled.div`
       line-height: 1.5em;
     }
 
+    td[colspan] {
+      text-align: center;
+    }
+
     td {
       padding: 1rem 2rem;
       border: 0;

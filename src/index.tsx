@@ -12,9 +12,9 @@ createServer({
       transactions: [
         {
           id: "1",
-          title: "Desenvolvimento",
+          title: "Desenvolvimento de Site",
           type: "deposit",
-          category: "Dev",
+          category: "Trabalho",
           amount: 6000,
           createdAt: new Date("2021-02-01 09:00:00"),
         },
@@ -22,7 +22,7 @@ createServer({
           id: "2",
           title: "Aluguel",
           type: "withdraw",
-          category: "Aluguel",
+          category: "Casa",
           amount: 1100,
           createdAt: new Date("2021-02-10 09:30:00"),
         },

@@ -1,9 +1,9 @@
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useState } from "react";
 import Modal from "react-modal";
 import { GoX } from "react-icons/go";
 import { GiReceiveMoney, GiPayMoney } from "react-icons/gi";
 
-import { TransactionContext } from "../../TransactionContext";
+import { useTransactions } from "../../hooks/useTransactions";
 
 import { Container, RadioBox, TransactionTypeContainer } from "./styles";
 
@@ -22,7 +22,7 @@ export function NewTransactionModal({
   const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState("");
   const [type, setType] = useState("deposit");
-  const { createTransaction } = useContext(TransactionContext);
+  const { createTransaction } = useTransactions();
 
   function resetForm() {
     setTitle("");

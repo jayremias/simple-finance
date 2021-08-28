@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { TransactionContext } from "../../TransactionContext";
+import { useTransactions } from "../../hooks/useTransactions";
 import { Container } from "./styles";
 
 export function TransactionsTable() {
-  const { transactions } = useContext(TransactionContext);
+  const { transactions } = useTransactions();
 
   return (
     <Container>
@@ -17,23 +16,29 @@ export function TransactionsTable() {
           </tr>
         </thead>
         <tbody>
-          {transactions.map((transaction) => (
-            <tr key={transaction.id}>
-              <td>{transaction.title}</td>
-              <td className={transaction.type}>
-                {new Intl.NumberFormat("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                }).format(transaction.amount)}
-              </td>
-              <td>{transaction.category}</td>
-              <td>
-                {new Intl.DateTimeFormat("pt-BR").format(
-                  new Date(transaction.createdAt)
-                )}
-              </td>
+          {transactions.length > 0 ? (
+            transactions.map((transaction) => (
+              <tr key={transaction.id}>
+                <td>{transaction.title}</td>
+                <td className={transaction.type}>
+                  {new Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(transaction.amount)}
+                </td>
+                <td>{transaction.category}</td>
+                <td>
+                  {new Intl.DateTimeFormat("pt-BR").format(
+                    new Date(transaction.createdAt)
+                  )}
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={4}>Nenhum dado encontrado</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </Container>
